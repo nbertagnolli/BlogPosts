@@ -167,7 +167,7 @@ def newtons_method(x_0, func, df, d2f, search, conv_tol=10e-6, params=[10e-4, .5
     return x, num_iter, x_vals
 
 
-def plot_contours(func, dim, x_vals=None):
+def plot_contours(func, dim, x_vals=None, t=""):
     """This method plots the contours of a function fun in the range of dim
     If x_vals are given then it plots these as lines and points on the graph
     to help visualize gradient descent
@@ -200,6 +200,7 @@ def plot_contours(func, dim, x_vals=None):
         points = np.matrix(x_vals)
         plot(points[:, 0], points[:, 1], '-or', ms=5)
 
+    title(t)
     show()
 
 
@@ -211,7 +212,7 @@ def main():
     print num_iter
     print f1(x_opt)
     dim = [-10, 10, -4, 4]
-    plot_contours(f1, dim, x_vals=x_vals)
+    plot_contours(f1, dim, x_vals=x_vals, t="Gradient Descent with Backtracking Line Search")
 
     print("Examine Finite Difference of Rosenbrock Function")
     epsilon = 10e-4
@@ -236,7 +237,7 @@ def main():
     #dim = [0, 2, 0, 2]
     #dim = [.5, 1.5, .5, 1.5]
     dim = [.9, 1.3, .9, 1.3]
-    plot_contours(f, dim, x_vals=x_vals)
+    plot_contours(f, dim, x_vals=x_vals, t="Rosenbrock Function GD x_0 = [1.2,1.2]")
 
     # Redo with different initial condition
     x_0 = np.array([-1.2, 1])
@@ -254,7 +255,7 @@ def main():
     print num_iter
     print f(x_opt)
     dim = [.9, 1.3, .9, 1.3]
-    plot_contours(f, dim, x_vals=x_vals)
+    plot_contours(f, dim, x_vals=x_vals, t="Rosenbrock Function Newton's Method x_0=[1.2,1.2]")
 
     # Redo with different initial condition
     x_0 = np.array([-1.2, 1])
